@@ -1,0 +1,56 @@
+<div class="menu-bar">
+
+  <div class="nav-links">
+
+    <a mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      Home
+    </a>
+
+    <button mat-button [matMenuTriggerFor]="productsMenu">
+      Products
+      <mat-icon class="dropdown-icon">expand_more</mat-icon>
+    </button>
+
+    <mat-menu #productsMenu="matMenu">
+      <button mat-menu-item routerLink="/products">All Products</button>
+      <button mat-menu-item routerLink="/product-details">Featured Watch</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="categoryMenu">
+      Categories
+      <mat-icon class="dropdown-icon">expand_more</mat-icon>
+    </button>
+
+    <mat-menu #categoryMenu="matMenu">
+      <button mat-menu-item routerLink="/products">Bags</button>
+      <button mat-menu-item routerLink="/products">Watches</button>
+      <button mat-menu-item routerLink="/products">Shoes</button>
+      <button mat-menu-item routerLink="/products">Beauty</button>
+    </mat-menu>
+
+    <a mat-button routerLink="/">About Us</a>
+
+    <a mat-button routerLink="/">Contact Us</a>
+
+  </div>
+
+  <div class="trust-badges">
+
+    <span class="badge-item">
+      <mat-icon>shield</mat-icon>
+      Secure Payments
+    </span>
+
+    <span class="badge-item">
+      <mat-icon>autorenew</mat-icon>
+      Easy Returns
+    </span>
+
+    <span class="badge-item">
+      <mat-icon>verified</mat-icon>
+      100% Authentic
+    </span>
+
+  </div>
+
+</div>

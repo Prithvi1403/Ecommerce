@@ -1,0 +1,36 @@
+<div class="navbar">
+
+  <a class="logo" routerLink="/">
+    EKART
+  </a>
+
+  <app-search-bar class="navbar-search"></app-search-bar>
+
+  <div class="actions">
+
+    <a class="action-item" routerLink="/login">
+      <mat-icon>person</mat-icon>
+      <span>Login / Sign Up</span>
+    </a>
+
+    <a class="action-item" routerLink="/orders">
+      <mat-icon>local_shipping</mat-icon>
+      <span>Track Order</span>
+    </a>
+
+    <a class="action-item" routerLink="/products">
+      <mat-icon>favorite_border</mat-icon>
+      <span>Wishlist</span>
+    </a>
+
+    <a class="action-item cart-link" routerLink="/cart">
+      <span class="cart-icon-wrap">
+        <mat-icon>shopping_cart</mat-icon>
+        <span class="cart-badge">{{ cartService.cartCount() }}</span>
+      </span>
+      <span>Cart</span>
+    </a>
+
+  </div>
+
+</div>

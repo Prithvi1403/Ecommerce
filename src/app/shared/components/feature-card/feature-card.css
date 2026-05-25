@@ -1,0 +1,35 @@
+.feature-card {
+  background-color: white;
+  padding: 24px 28px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  transition: 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+}
+
+.feature-card mat-icon {
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+  color: #4b1208;
+  flex-shrink: 0;
+}
+
+.feature-text h3 {
+  margin: 0 0 6px;
+  color: #2d1b12;
+  font-size: 17px;
+}
+
+.feature-text p {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+  line-height: 1.4;
+}

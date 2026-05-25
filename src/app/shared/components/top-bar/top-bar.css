@@ -1,0 +1,21 @@
+.top-bar {
+  background-color: #4b1208;
+  color: white;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+mat-icon {
+  font-size: 18px;
+}

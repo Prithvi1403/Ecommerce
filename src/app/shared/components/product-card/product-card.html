@@ -1,0 +1,38 @@
+<div class="product-card" [routerLink]="detailsLink">
+
+  <div class="image-section">
+
+    <img [src]="image" [alt]="title">
+
+  </div>
+
+  <div class="content">
+
+    <h3>{{ title }}</h3>
+
+    <p class="price">₹{{ price | number }}</p>
+
+    <div class="rating">
+
+      <mat-icon>star</mat-icon>
+
+      <span *ngIf="reviewCount !== undefined">
+        {{ rating }} ({{ reviewCount }})
+      </span>
+
+      <span *ngIf="reviewCount === undefined">
+        {{ rating }}
+      </span>
+
+    </div>
+
+    <button
+      *ngIf="showAddToCart"
+      type="button"
+      (click)="addToCart($event)">
+      Add To Cart
+    </button>
+
+  </div>
+
+</div>

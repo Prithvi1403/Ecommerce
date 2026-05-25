@@ -1,0 +1,73 @@
+
+<section class="cart-page">
+
+  <h1>
+    Shopping Cart
+  </h1>
+
+  <div
+    *ngIf="cartItems.length === 0"
+    class="empty-cart">
+
+    Your cart is empty.
+
+    <a routerLink="/products">Continue Shopping</a>
+
+  </div>
+
+  <div
+    *ngFor="let item of cartItems"
+    class="cart-item">
+
+    <img
+      [src]="item.image"
+      [alt]="item.title">
+
+    <div class="details">
+
+      <h2>
+        {{ item.title }}
+      </h2>
+
+      <p>
+        ₹{{ item.price }}
+      </p>
+
+      <p>
+        Quantity: {{ item.quantity }}
+      </p>
+
+      <p>
+        Rating: {{ item.rating }}
+      </p>
+
+      <p class="line-total">
+        Subtotal: ₹{{ item.price * item.quantity }}
+      </p>
+
+      <button
+        type="button"
+        class="remove-btn"
+        (click)="removeItem(item.title)">
+        Remove
+      </button>
+
+    </div>
+
+  </div>
+
+  <div
+    *ngIf="cartItems.length > 0"
+    class="total-section">
+
+    <h2>
+      Total: ₹{{ getTotal() }}
+    </h2>
+
+    <button type="button" routerLink="/checkout">
+      Proceed To Checkout
+    </button>
+
+  </div>
+
+</section>

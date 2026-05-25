@@ -1,0 +1,37 @@
+<section class="orders-page">
+
+    <h1>
+      My Orders
+    </h1>
+  
+    <div
+      *ngFor="let order of orders"
+      class="order-card">
+  
+      <div class="top-section">
+  
+        <h2>
+          Order #{{ order.id }}
+        </h2>
+  
+        <span
+          class="status"
+          [ngClass]="order.status.toLowerCase()">
+  
+          {{ order.status }}
+  
+        </span>
+  
+      </div>
+  
+      <p>
+        {{ order.product }}
+      </p>
+  
+      <h3>
+        ₹{{ order.amount }}
+      </h3>
+  
+    </div>
+  
+  </section>

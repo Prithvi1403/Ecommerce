@@ -1,0 +1,74 @@
+
+
+<section class="details-page">
+
+  <div class="image-section">
+
+    <img
+      src="assets/products/watch-gold-type-photo.jpg"
+      alt="Premium Gold Edition Watch">
+
+  </div>
+
+  <div class="content-section">
+
+    <p class="brand">
+      EKART LUXURY
+    </p>
+
+    <h1>
+      Premium Gold Edition Watch
+    </h1>
+
+    <div class="rating">
+
+      <mat-icon>star</mat-icon>
+
+      <span>4.9 Rating</span>
+
+    </div>
+
+    <h2>
+      ₹9,999
+    </h2>
+
+    <p class="description">
+
+      Crafted with premium materials and timeless
+      elegance for luxury fashion lovers.
+
+    </p>
+
+    <div class="quantity-section">
+
+      <button type="button" (click)="decreaseQuantity()">
+        -
+      </button>
+
+      <span>
+        {{ quantity }}
+      </span>
+
+      <button type="button" (click)="increaseQuantity()">
+        +
+      </button>
+
+    </div>
+
+    <div class="buttons">
+
+        <button
+        class="cart-btn"
+        (click)="addToCart()">
+        Add To Cart
+      </button>
+
+      <button type="button" class="buy-btn" (click)="buyNow()">
+        Buy Now
+      </button>
+
+    </div>
+
+  </div>
+
+</section>

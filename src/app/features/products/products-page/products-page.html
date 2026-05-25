@@ -1,0 +1,178 @@
+<section class="products-page">
+
+  <nav class="breadcrumbs">
+    <a routerLink="/">Home</a>
+    <span class="sep">&gt;</span>
+    <span class="current">Products</span>
+  </nav>
+
+  <h1 class="page-title">All Products</h1>
+
+  <div class="page-layout">
+
+    <aside class="sidebar">
+
+      <div class="filter-block">
+        <h3>Categories</h3>
+        <ul class="category-list">
+          <li
+            *ngFor="let category of categories"
+            [class.active]="isCategoryActive(category)"
+            (click)="selectCategory(category)">
+            {{ category }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="filter-block">
+        <h3>Filters</h3>
+
+        <p class="filter-label">Price Range</p>
+        <input
+          type="range"
+          class="price-slider"
+          min="0"
+          max="50000"
+          step="500"
+          [(ngModel)]="maxPrice"
+          (ngModelChange)="onFiltersChange()" />
+        <div class="price-labels">
+          <span>₹0</span>
+          <span>₹50,000+</span>
+        </div>
+
+        <p class="filter-label">Brand</p>
+        <label *ngFor="let brand of brands" class="checkbox-row">
+          <input
+            type="checkbox"
+            [(ngModel)]="selectedBrands[brand]"
+            (ngModelChange)="onFiltersChange()" />
+          {{ brand }}
+        </label>
+
+        <p class="filter-label">Rating</p>
+        <label *ngFor="let option of ratingOptions" class="checkbox-row rating-row">
+          <input
+            type="radio"
+            name="rating"
+            [value]="option.value"
+            [checked]="minRating === option.value"
+            (change)="minRating = option.value; onFiltersChange()" />
+          <span class="stars">★★★★★</span>
+          <span>{{ option.label }}</span>
+        </label>
+        <label class="checkbox-row">
+          <input
+            type="radio"
+            name="rating"
+            [value]="0"
+            [checked]="minRating === 0"
+            (change)="minRating = 0; onFiltersChange()" />
+          All ratings
+        </label>
+      </div>
+
+    </aside>
+
+    <div class="products-main">
+
+      <div class="toolbar">
+        <p class="showing-text">
+          <ng-container *ngIf="displayedProducts.length > 0">
+            Showing {{ showingFrom }}–{{ showingTo }} of
+            {{ totalCatalogCount }} products
+          </ng-container>
+          <ng-container *ngIf="displayedProducts.length === 0">
+            No products found
+          </ng-container>
+        </p>
+
+        <div class="toolbar-right">
+          <label class="sort-by">
+            Sort by:
+            <select [(ngModel)]="sortBy" (ngModelChange)="applyFilters()">
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="rating">Rating</option>
+            </select>
+          </label>
+
+          <div class="view-toggle">
+            <button
+              type="button"
+              [class.active]="viewMode === 'grid'"
+              (click)="setViewMode('grid')"
+              aria-label="Grid view">
+              <mat-icon>grid_view</mat-icon>
+            </button>
+            <button
+              type="button"
+              [class.active]="viewMode === 'list'"
+              (click)="setViewMode('list')"
+              aria-label="List view">
+              <mat-icon>view_list</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <p *ngIf="searchQuery" class="search-info">
+        Results for: <strong>{{ searchQuery }}</strong>
+      </p>
+
+      <div
+        class="products-grid"
+        [class.list-view]="viewMode === 'list'">
+
+        <app-product-card
+          *ngFor="let product of paginatedProducts"
+          [image]="product.image"
+          [title]="product.title"
+          [price]="product.price"
+          [rating]="product.rating"
+          [reviewCount]="product.reviewCount"
+          [detailsLink]="product.detailsLink"
+          [showAddToCart]="false">
+        </app-product-card>
+
+      </div>
+
+      <p *ngIf="paginatedProducts.length === 0" class="no-results">
+        No products match your filters. Try adjusting them.
+      </p>
+
+      <div class="pagination" *ngIf="displayedProducts.length > 0">
+
+        <button
+          type="button"
+          class="page-btn"
+          [disabled]="currentPage === 1"
+          (click)="goToPage(currentPage - 1)">
+          &lt;
+        </button>
+
+        <button
+          *ngFor="let page of pageNumbers"
+          type="button"
+          class="page-btn"
+          [class.active]="page === currentPage"
+          (click)="goToPage(page)">
+          {{ page }}
+        </button>
+
+        <button
+          type="button"
+          class="page-btn"
+          [disabled]="currentPage === totalPages"
+          (click)="goToPage(currentPage + 1)">
+          &gt;
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

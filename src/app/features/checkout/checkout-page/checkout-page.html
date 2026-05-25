@@ -1,0 +1,102 @@
+<section class="checkout-page">
+
+  <div class="checkout-container">
+
+    <h1>
+      Checkout
+    </h1>
+
+    <div class="order-summary" *ngIf="cartItems.length > 0">
+
+      <h2>
+        Order Summary
+      </h2>
+
+      <div class="summary-item" *ngFor="let item of cartItems">
+
+        <span>{{ item.title }} x {{ item.quantity }}</span>
+
+        <span>₹{{ item.price * item.quantity }}</span>
+
+      </div>
+
+      <p class="summary-total">
+        Total: ₹{{ total }}
+      </p>
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Full Name</label>
+
+      <input type="text" [(ngModel)]="name" />
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Email</label>
+
+      <input type="email" [(ngModel)]="email" />
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Phone Number</label>
+
+      <input type="text" [(ngModel)]="phone" />
+
+    </div>
+
+    <div class="form-group">
+
+      <label>Address</label>
+
+      <textarea rows="4" [(ngModel)]="address"></textarea>
+
+    </div>
+
+    <div class="payment-section">
+
+      <h2>Payment Method</h2>
+
+      <label>
+        <input
+          type="radio"
+          name="payment"
+          value="COD"
+          [(ngModel)]="paymentMethod" />
+        Cash On Delivery
+      </label>
+
+      <label>
+        <input
+          type="radio"
+          name="payment"
+          value="UPI"
+          [(ngModel)]="paymentMethod" />
+        UPI
+      </label>
+
+      <label>
+        <input
+          type="radio"
+          name="payment"
+          value="CARD"
+          [(ngModel)]="paymentMethod" />
+        Card
+      </label>
+
+    </div>
+
+    <button type="button" class="place-order-btn" (click)="placeOrder()">
+      Place Order
+    </button>
+
+    <a routerLink="/cart" class="back-link">Back to Cart</a>
+
+  </div>
+
+</section>

@@ -1,0 +1,26 @@
+<section class="products-section">
+
+  <div class="section-head">
+
+    <h2>Trending Products</h2>
+
+    <a routerLink="/products" class="view-all">View All</a>
+
+  </div>
+
+  <div class="products-grid">
+
+    <app-product-card
+      *ngFor="let product of products"
+      [image]="product.image"
+      [title]="product.title"
+      [price]="product.price"
+      [rating]="product.rating"
+      [reviewCount]="product.reviewCount"
+      [detailsLink]="product.detailsLink"
+      [showAddToCart]="false">
+    </app-product-card>
+
+  </div>
+
+</section>
