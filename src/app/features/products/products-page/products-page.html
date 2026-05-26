@@ -8,6 +8,11 @@
 
   <h1 class="page-title">All Products</h1>
 
+  <div class="status-bar">
+    <p *ngIf="isLoading" class="loading-text">Loading products from the API…</p>
+    <p *ngIf="apiError" class="error-text">{{ apiError }}</p>
+  </div>
+
   <div class="page-layout">
 
     <aside class="sidebar">

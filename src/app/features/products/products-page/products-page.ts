@@ -47,6 +47,8 @@ export class ProductsPage implements OnInit {
   currentPage = 1;
   readonly pageSize = 12;
   readonly totalCatalogCount = 120;
+  isLoading = false;
+  apiError = '';
 
   constructor(
     private catalog: ProductCatalog,
@@ -61,13 +63,33 @@ export class ProductsPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.allProducts = [...this.catalog.products];
+    this.loadProducts();
 
     this.route.queryParamMap.subscribe((params) => {
       this.searchQuery = params.get('search') ?? '';
       this.searchService.setSearchTerm(this.searchQuery);
       this.currentPage = 1;
       this.applyFilters();
+    });
+  }
+
+  private loadProducts(): void {
+    this.isLoading = true;
+    this.apiError = '';
+
+    this.catalog.fetchProducts().subscribe({
+      next: (products) => {
+        this.allProducts = products;
+        this.applyFilters();
+        this.isLoading = false;
+      },
+      error: () => {
+        this.apiError =
+          'Unable to load products from the API. Showing fallback catalog.';
+        this.allProducts = [...this.catalog.products];
+        this.applyFilters();
+        this.isLoading = false;
+      },
     });
   }
 

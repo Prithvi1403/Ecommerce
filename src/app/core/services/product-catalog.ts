@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
 
 export interface CatalogProduct {
   image: string;
@@ -9,6 +11,17 @@ export interface CatalogProduct {
   category: string;
   brand: string;
   detailsLink: string;
+}
+
+interface RemoteProduct {
+  title: string;
+  price: number;
+  category: string;
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
 }
 
 @Injectable({
@@ -157,4 +170,25 @@ export class ProductCatalog {
     'Ray-Ban',
     'Samsung',
   ];
+
+  constructor(private http: HttpClient) {}
+
+  fetchProducts(): Observable<CatalogProduct[]> {
+    const url = 'https://fakestoreapi.com/products?limit=12';
+
+    return this.http.get<RemoteProduct[]>(url).pipe(
+      map((items) =>
+        items.map((item) => ({
+          image: item.image,
+          title: item.title,
+          price: Math.round(item.price * 100),
+          rating: item.rating.rate,
+          reviewCount: item.rating.count,
+          category: item.category,
+          brand: item.title.split(' ')[0] ?? 'Brand',
+          detailsLink: '/product-details',
+        })),
+      ),
+    );
+  }
 }
